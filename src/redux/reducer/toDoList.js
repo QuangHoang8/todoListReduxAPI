@@ -1,6 +1,6 @@
 import { actionTypes } from "../actionTypes";
 
-export const updateToDo = (state = { todos: [] }, action) => {
+export const toDoList = (state = { todos: [] }, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_TODOLIST: {
       return {

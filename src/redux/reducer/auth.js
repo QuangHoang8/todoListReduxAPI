@@ -5,7 +5,7 @@ export const authReducer = (
   state = { email: "", password: "", user: null, isLoginFail: false },
   action
 ) => {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case "@@INIT": {
       return initState(state);

@@ -18,10 +18,18 @@ import {
 } from "../redux/actionCreator";
 
 export default function TodoList() {
-  const taskList = useSelector((state) => state.updateTodo.todos);
-  const isLoading = useSelector((state) => state.status.isLoading);
-  const isError = useSelector((state) => state.status.isError);
-  const loadingCount = useSelector((state) => state.status.count);
+  const taskList = useSelector((state) => state.toDoList.todos);
+  const isLoadingToDoList = useSelector(
+    (state) => state.statusTodoList.isLoading
+  );
+  const isErrorToDoList = useSelector((state) => state.statusTodoList.isError);
+  const loadingCount = useSelector((state) => state.statusTodoList.count);
+  const isExpandNotComplete = useSelector(
+    (state) => state.expandNotComplete.isExpand
+  );
+  const isExpandComplete = useSelector(
+    (state) => state.expandComplete.isExpand
+  );
   const convertDate = (time) => new Date(time).getTime();
   // const history = useHistory();
   const currentUser = useSelector((state) => state.auth.user);
@@ -88,18 +96,19 @@ export default function TodoList() {
   };
 
   const renderContent = () => {
-    return isLoading ? (
+    return isLoadingToDoList ? (
       <Loading />
     ) : (
       <div className={style.todoList}>
         <Header onChangeLoading={setLoadingCount} userName={currentUser.name} />
+
         <TaskList
-          incompletedList={incompletedList}
+          incompletedList={isExpandNotComplete ? incompletedList : ""}
           onChangeCompleteStatus={handleChangeCompleteStatus}
           onChangeFavoriteStatus={handleChangeFavoriteStatus}
         />
         <CompleteTask
-          completedList={completedList}
+          completedList={isExpandComplete ? completedList : ""}
           onChangeCompleteStatus={handleChangeCompleteStatus}
           onChangeFavoriteStatus={handleChangeFavoriteStatus}
         />
@@ -118,14 +127,10 @@ export default function TodoList() {
     return (
       <div>
         <div>"Error"</div>
-        <ReloadButton
-          onClick={() => {
-            setLoadingCount();
-          }}
-        />
+        <ReloadButton onClick={setLoadingCount()} />
       </div>
     );
   };
 
-  return isError ? renderErrorContent() : renderContent();
+  return isErrorToDoList ? renderErrorContent() : renderContent();
 }

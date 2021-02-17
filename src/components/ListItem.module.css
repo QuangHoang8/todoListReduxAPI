@@ -48,3 +48,25 @@
 .listTask h2 {
   padding-left: 1.8rem;
 }
+.flex {
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  display: none !important;
+}
+.up {
+  border: solid black;
+  margin-left: 12px;
+
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  height: 2px !important;
+  padding: 4px;
+  transform: rotate(-135deg);
+  transition: 0.5s;
+}
+.checkbox:checked + label {
+  transform: rotate(45deg);
+  transition: 0.5s;
+}

@@ -59,3 +59,15 @@ export const setCount = () => ({
   type: actionTypes.LOADING_COUNT,
   payload: {},
 });
+export const setIsExpandNotComplete = (expandStatus) => ({
+  type: actionTypes.IS_EXPAND_NOT_COMPLETE,
+  payload: {
+    expandStatus,
+  },
+});
+export const setIsExpandComplete = (expandStatus) => ({
+  type: actionTypes.IS_EXPAND_COMPLETE,
+  payload: {
+    expandStatus,
+  },
+});

@@ -1,5 +1,5 @@
 import axios from "axios";
-const user = "Hoang";
+const user = "hoang";
 const url = "http://localhost:5000";
 const getTodoEndpoint = `${url}/Todo/GetTodos`;
 const addTodoEndpoint = `${url}/Todo/AddTodo`;
